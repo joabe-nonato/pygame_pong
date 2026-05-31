@@ -5,11 +5,17 @@ from entities.base_ball import Ball
 from entities.base_CPU import CPU
 from entities.base_player import Player
 from entities.base_score import Pontuacao
-from system.helpers import escrever
+from system.helpers import escrever, musica_tema
+from audio.efeitos import Efeito
+from audio.musicas import Musica
 
 #CRIAR OBJETOS
 pg.init()
-
+pg.mixer.init(
+    frequency=44100,
+    size=-16,
+    channels=1
+)
 pg.display.set_caption('PONG')
 
 lista_textos = []
@@ -19,12 +25,15 @@ lista_textos.append("[Esc] para sair")
 lista_textos.append("[Setas] para mover")
 lista_textos.append("[Enter] para começar")
 
+efeitos = Efeito()
+
 class Game:
-    def __init__(self):
+    def __init__(self):        
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
         self.executar = False
-        
+        self.efeitos = Efeito()
+        self.musicas = Musica()
         self.resetar()
     
     def resetar(self):
@@ -33,6 +42,7 @@ class Game:
         self.player = Player()
         self.pontuacao = Pontuacao()
         self.vitoria = False
+        # self.sons["enter"].play()
         
     def encerrar(self):
         pg.quit()
@@ -53,6 +63,7 @@ class Game:
                     if event.key == pg.K_RETURN:
                         self.resetar()
                         self.executar = True
+                        self.musicas.tema.play(-1)
                     if event.key == pg.K_ESCAPE:
                         self.encerrar()
             
@@ -77,6 +88,7 @@ class Game:
                     or self.ball.objeto.colliderect(self.CPU.objeto)):
                     self.ball.speed_x *= -1
                     self.ball.dificuldade += 0.1
+                    self.efeitos.hit.play()
                                 
                 self.CPU.ball_centery = self.ball.objeto.centery
                 
@@ -86,6 +98,12 @@ class Game:
                 
                 
                 self.ball.reset = self.pontuacao.ponto
+                
+                if self.pontuacao.ponto:
+                   self.efeitos.score.play() 
+                   
+                if self.pontuacao.vitoria:
+                    self.efeitos.vitoria.play()
         
         pg.display.update()
         self.clock.tick(FPS)
@@ -109,12 +127,12 @@ class Game:
             
             
             posy = (HEIGHT / 2) - 35
-            for texto in lista_textos[::-1]:        
+            for texto in lista_textos[::-1]:                        
                 escrever(self.screen, texto, 30, 0 , posy)                
                 posy -= 35
-            
-            
-    def run(self):        
+                        
+    def run(self):     
+        self.efeitos.menu.play()   
         # GAME LOOP
         while True:
             
