@@ -1,28 +1,62 @@
 # Pygame Pong
 
-Projeto didático de um jogo estilo **Pong** feito com **Pygame**.
+<p align="center">
+  <img src="assets/image/game_pong.png" alt="Pygame Pong" width="720">
+</p>
+
+<p align="center">
+  Projeto didático de um Pong em Pygame com jogabilidade simples, pontuação, IA básica e áudio gerado em tempo real.
+</p>
+
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.x-3776AB">
+  <img alt="Pygame" src="https://img.shields.io/badge/Pygame-2.x-8CC84B">
+  <img alt="NumPy" src="https://img.shields.io/badge/NumPy-2.x-013243">
+  <img alt="Status" src="https://img.shields.io/badge/Status-Estudo%20prático-6A5ACD">
+</p>
 
 **Autor:** Joabe Nonato
 
-A ideia aqui é servir como base para estudo: o código está dividido em pequenas partes para facilitar o aprendizado de quem está começando com jogos em Python.  
-Além da lógica do jogo, este projeto também inclui um sistema de áudio simples criado com `pygame.mixer` e `numpy`.
+---
 
-## O que este projeto ensina
+## Sumário
 
-- Criação de janela com Pygame
-- Loop principal do jogo
-- Desenho de objetos na tela
-- Movimento de jogador, CPU e bola
-- Detecção de colisão
-- Sistema de pontuação
-- Lógica simples de IA para o oponente
-- Geração de áudio em tempo de execução
-- Reproduzir efeitos sonoros e música de fundo
+- [Sobre o projeto](#sobre-o-projeto)
+- [Demonstração](#demonstração)
+- [Como jogar](#como-jogar)
+- [Requisitos](#requisitos)
+- [Como executar](#como-executar)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Arquitetura](#arquitetura)
+- [Sistema de áudio](#sistema-de-áudio)
+- [Aprendizados](#aprendizados)
+- [Próximos passos](#próximos-passos)
 
-## Controles
+## Sobre o projeto
+
+Este repositório foi montado como material de estudo para quem está aprendendo Pygame.
+
+A proposta é mostrar, de forma pequena e organizada, como um jogo funciona por dentro:
+
+- janela e loop principal
+- controle das raquetes
+- movimento da bola
+- colisão entre objetos
+- placar e condição de vitória
+- efeitos sonoros e música simples
+
+## Demonstração
+
+A imagem abaixo funciona como capa do projeto no GitHub e pode ser substituída no futuro por gifs curtos do jogo em ação.
+
+<p align="center">
+  <img src="assets/image/game_pong.png" alt="Screenshot do Pygame Pong" width="720">
+</p>
+
+## Como jogar
 
 - `Seta para cima` e `Seta para baixo`: mover a raquete do jogador
-- `Enter`: iniciar uma partida ou reiniciar após vitória
+- `Enter`: iniciar a partida ou reiniciar após vitória
 - `Esc`: sair do jogo
 
 ## Requisitos
@@ -51,6 +85,9 @@ python main.py
 pygame_pong/
 ├── README.md
 ├── main.py
+├── assets/
+│   └── image/
+│       └── game_pong.png
 ├── audio/
 │   ├── efeitos.py
 │   ├── gerar_audio.py
@@ -66,168 +103,113 @@ pygame_pong/
     └── settings.py
 ```
 
-## Visão geral dos arquivos
+## Arquitetura
 
 ### `main.py`
 
-É o ponto de entrada do jogo. Aqui ficam:
+É o ponto de entrada do jogo. Ele:
 
-- inicialização do Pygame
-- inicialização do mixer de áudio
-- criação da janela
-- loop principal
-- tratamento de eventos
-- atualização da lógica
-- renderização dos elementos
+- inicializa o Pygame
+- inicializa o mixer de áudio
+- cria a janela
+- controla o loop principal
+- trata eventos do teclado
+- atualiza a lógica do jogo
+- desenha os elementos na tela
 
-Também define a classe `Game`, que organiza o ciclo do jogo em métodos:
-
-- `events()`: lê teclado e eventos da janela
-- `update()`: atualiza posições, colisões e pontuação
-- `draw()`: desenha tudo na tela
-- `run()`: executa o loop principal
-
-Também é aqui que o jogo dispara os sons:
-
-- música de menu ao abrir o jogo
-- música de tema ao iniciar a partida
-- efeito de batida quando a bola encosta na raquete
-- efeito de pontuação quando alguém faz ponto
-- efeito de vitória quando alguém vence
+Também é aqui que o jogo dispara os sons de menu, partida, colisão, pontuação e vitória.
 
 ### `entities/base_ball.py`
 
-Contém a classe `Ball`, responsável pela bola do jogo.
+Responsável pela bola do jogo.
 
-Responsabilidades:
+Ela:
 
-- criar o retângulo da bola
-- mover a bola na horizontal e vertical
-- inverter a direção ao bater no topo ou no rodapé
-- controlar a dificuldade/velocidade progressiva
-
-Quando a bola ultrapassa uma lateral, o placar entra em ação e o jogo pode disparar o som de ponto.
+- cria o retângulo da bola
+- movimenta a bola horizontal e verticalmente
+- rebate no topo e no rodapé
+- aumenta a dificuldade aos poucos
 
 ### `entities/base_player.py`
 
-Contém a classe `Player`, que representa a raquete controlada pelo jogador.
+Representa a raquete do jogador.
 
-Responsabilidades:
+Ela:
 
-- ler as teclas de seta
-- mover a raquete para cima e para baixo
-- impedir que a raquete saia da tela
+- lê as setas do teclado
+- move a raquete para cima e para baixo
+- impede que a raquete saia da tela
 
 ### `entities/base_CPU.py`
 
-Contém a classe `CPU`, que representa o adversário controlado pelo computador.
+Representa o adversário controlado pelo computador.
 
-Responsabilidades:
+Ela:
 
-- seguir o eixo vertical da bola
-- manter a raquete dentro dos limites da tela
+- segue a posição vertical da bola
+- mantém a raquete dentro da tela
 
-Essa IA é simples, mas ótima para estudo porque mostra como criar um oponente sem usar bibliotecas extras.
+Essa IA é propositalmente simples, o que a torna ótima para estudo.
 
 ### `entities/base_score.py`
 
-Contém a classe `Pontuacao`, que gerencia:
+Responsável pela pontuação e pela condição de vitória.
 
-- pontos do jogador
-- pontos da CPU
-- condição de vitória
+Ela:
 
-Quando a bola passa de um lado da tela, o ponto é atribuído ao lado oposto.
-
-Esse arquivo também decide quando a vitória acontece, liberando o efeito sonoro de final de partida.
+- conta os pontos do jogador
+- conta os pontos da CPU
+- define quando alguém vence
 
 ### `system/helpers.py`
 
-Arquivo com funções auxiliares.
-
-Hoje ele contém `escrever()`, usada para centralizar e desenhar textos na tela.
+Contém funções auxiliares de renderização, como `escrever()`, usada para desenhar textos centralizados.
 
 ### `system/settings.py`
 
-Arquivo de configurações do jogo.
-
-Define valores como:
+Centraliza as configurações do jogo:
 
 - largura e altura da janela
 - FPS
 - pontuação máxima
 - cores
 
-Centralizar essas constantes em um lugar facilita ajustes futuros.
-
 ### `audio/gerar_audio.py`
 
-Arquivo responsável por gerar ondas sonoras com `numpy`.
+Gera ondas sonoras com `numpy`.
 
-Ele transforma frequência e duração em arrays de áudio que depois são convertidos em som pelo `pygame.mixer`.
+Esse arquivo converte frequência e duração em um array de áudio que depois vira som no `pygame.mixer`.
 
 ### `audio/partituras.py`
 
-Define as notas e a sequência usada pela música do jogo.
+Define as notas e a sequência usada pela trilha do jogo.
 
 ### `audio/musicas.py`
 
-Cria objetos de música a partir da partitura, preparando o tema principal do jogo.
+Monta a música principal a partir da partitura.
 
 ### `audio/efeitos.py`
 
-Contém os efeitos sonoros curtos do jogo, como:
+Cria os efeitos sonoros curtos usados durante a partida, como:
 
 - batida da bola
 - pontuação
-- música de menu
-- música de vitória
-- outros sons preparados para expansão futura
-
-## Como o jogo funciona
-
-1. O programa inicia o Pygame e cria a janela.
-2. O loop principal roda continuamente.
-3. O jogador controla a raquete com o teclado.
-4. A CPU tenta acompanhar a posição vertical da bola.
-5. A bola se move e rebate nas bordas superior e inferior.
-6. Quando a bola encosta numa raquete, a direção horizontal é invertida.
-7. Se a bola atravessa uma lateral da tela, o placar é atualizado.
-8. Sons diferentes são disparados conforme a situação do jogo.
-9. O jogo termina quando alguém atinge a pontuação máxima.
-
-## Regras do jogo
-
-- Ganha quem fizer primeiro `10 pontos`
-- A bola fica mais rápida ao longo da partida
-- O som de fundo começa quando a partida é iniciada
-- Depois da vitória, `Enter` ou `Esc` reiniciam o jogo
-
-## Para quem está aprendendo
-
-Se você estiver estudando Pygame, este projeto é um bom exercício porque reúne os conceitos básicos de uma forma prática:
-
-- `Rect` para representar objetos
-- `draw` para desenhar formas geométricas
-- `event.get()` para capturar teclas
-- `colliderect()` para colisão
-- `Clock` para controlar FPS
-- `mixer` para áudio e efeitos sonoros
-- `numpy` para gerar ondas sonoras
+- menu
+- vitória
 
 ## Sistema de áudio
 
-O áudio deste projeto foi pensado para ser simples e didático, sem depender de arquivos `.wav` prontos para tudo.
+O áudio foi pensado para ser didático e simples, sem depender de um monte de arquivos prontos.
 
-### Como ele funciona
+### Fluxo do áudio
 
-1. O jogo inicializa o `pg.mixer` com frequência de 44100 Hz.
-2. As notas são definidas em `audio/partituras.py`.
-3. `audio/gerar_audio.py` converte essas notas em ondas senoidais com `numpy`.
-4. `audio/musicas.py` monta a música principal a partir da partitura.
-5. `audio/efeitos.py` cria os efeitos curtos usados durante a partida.
+1. O jogo inicializa `pg.mixer` com frequência de `44100 Hz`.
+2. As notas ficam definidas em `audio/partituras.py`.
+3. `audio/gerar_audio.py` transforma essas notas em ondas senoidais.
+4. `audio/musicas.py` monta a música principal.
+5. `audio/efeitos.py` prepara os efeitos sonoros curtos.
 
-### Onde os sons entram no jogo
+### Quando os sons tocam
 
 - ao abrir o jogo, toca uma música de menu
 - ao apertar `Enter`, a partida começa e a música principal entra em loop
@@ -235,15 +217,27 @@ O áudio deste projeto foi pensado para ser simples e didático, sem depender de
 - ao marcar ponto, toca um som curto de pontuação
 - ao vencer, toca uma música de vitória
 
-## Próximos passos sugeridos
+## Aprendizados
+
+Se você está estudando Pygame, este projeto é um bom exercício porque reúne conceitos essenciais:
+
+- `Rect` para representar objetos
+- `draw` para desenhar formas geométricas
+- `event.get()` para capturar teclas
+- `colliderect()` para colisão
+- `Clock` para controlar FPS
+- `mixer` para áudio
+- `numpy` para geração de ondas sonoras
+
+## Próximos passos
 
 - adicionar menu inicial
 - melhorar a IA da CPU
 - aumentar a dificuldade com o tempo
 - adicionar tela de pausa
 - registrar placares
+- incluir gifs de gameplay no README
 - separar melhor os assets de áudio
-- adicionar arquivos de som externos para comparação com os sons gerados em código
 
 ## Licença
 
