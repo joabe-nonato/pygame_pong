@@ -38,7 +38,7 @@ pip install pygame
 Na raiz do projeto, rode:
 
 ```bash
-python src/main.py
+python main.py
 ```
 
 ## Estrutura do projeto
@@ -46,21 +46,20 @@ python src/main.py
 ```text
 pygame_pong/
 ├── README.md
-└── src/
-    ├── main.py
-    ├── entities/
-    │   ├── base_ball.py
-    │   ├── base_CPU.py
-    │   ├── base_player.py
-    │   └── base_score.py
-    └── system/
-        ├── helpers.py
-        └── settings.py
+├── main.py
+├── entities/
+│   ├── base_ball.py
+│   ├── base_CPU.py
+│   ├── base_player.py
+│   └── base_score.py
+└── system/
+    ├── helpers.py
+    └── settings.py
 ```
 
 ## Visão geral dos arquivos
 
-### `src/main.py`
+### `main.py`
 
 É o ponto de entrada do jogo. Aqui ficam:
 
@@ -78,7 +77,7 @@ Também define a classe `Game`, que organiza o ciclo do jogo em métodos:
 - `draw()`: desenha tudo na tela
 - `run()`: executa o loop principal
 
-### `src/entities/base_ball.py`
+### `entities/base_ball.py`
 
 Contém a classe `Ball`, responsável pela bola do jogo.
 
@@ -89,7 +88,7 @@ Responsabilidades:
 - inverter a direção ao bater no topo ou no rodapé
 - controlar a dificuldade/velocidade progressiva
 
-### `src/entities/base_player.py`
+### `entities/base_player.py`
 
 Contém a classe `Player`, que representa a raquete controlada pelo jogador.
 
@@ -99,7 +98,7 @@ Responsabilidades:
 - mover a raquete para cima e para baixo
 - impedir que a raquete saia da tela
 
-### `src/entities/base_CPU.py`
+### `entities/base_CPU.py`
 
 Contém a classe `CPU`, que representa o adversário controlado pelo computador.
 
@@ -110,7 +109,7 @@ Responsabilidades:
 
 Essa IA é simples, mas ótima para estudo porque mostra como criar um oponente sem usar bibliotecas extras.
 
-### `src/entities/base_score.py`
+### `entities/base_score.py`
 
 Contém a classe `Pontuacao`, que gerencia:
 
@@ -120,13 +119,13 @@ Contém a classe `Pontuacao`, que gerencia:
 
 Quando a bola passa de um lado da tela, o ponto é atribuído ao lado oposto.
 
-### `src/system/helpers.py`
+### `system/helpers.py`
 
 Arquivo com funções auxiliares.
 
 Hoje ele contém `escrever()`, usada para centralizar e desenhar textos na tela.
 
-### `src/system/settings.py`
+### `system/settings.py`
 
 Arquivo de configurações do jogo.
 
