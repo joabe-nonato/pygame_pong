@@ -71,6 +71,12 @@ Instalação:
 pip install pygame numpy
 ```
 
+O projeto também inclui um `requirements.txt` para facilitar a instalação das dependências em uma única vez:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Como executar
 
 Na raiz do projeto, rode:
@@ -231,13 +237,22 @@ Se você está estudando Pygame, este projeto é um bom exercício porque reúne
 
 ## Próximos passos
 
-- adicionar menu inicial
-- melhorar a IA da CPU
-- aumentar a dificuldade com o tempo
-- adicionar tela de pausa
-- registrar placares
-- incluir gifs de gameplay no README
-- separar melhor os assets de áudio
+### Roadmap
+
+- [x] criar o jogo base de Pong
+- [x] adicionar sistema de pontuação
+- [x] adicionar IA simples para a CPU
+- [x] adicionar sons e música
+- [x] incluir imagem de destaque no README
+- [x] publicar o projeto no GitHub
+- [x] adicionar `requirements.txt`
+- [ ] adicionar menu inicial
+- [ ] melhorar a IA da CPU
+- [ ] aumentar a dificuldade com o tempo
+- [ ] adicionar tela de pausa
+- [ ] registrar placares
+- [ ] incluir gifs de gameplay no README
+- [ ] separar melhor os assets de áudio
 
 ## Licença
 
