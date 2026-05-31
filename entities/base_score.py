@@ -17,8 +17,7 @@ class Pontuacao:
         if self.ball_left <= 0: 
             self.player_ponto += 1
             self.ponto = True
-            
-        if self.ball_left >= WIDTH:
+        elif self.ball_left >= WIDTH:
             self.cpu_ponto += 1
             self.ponto = True
         
