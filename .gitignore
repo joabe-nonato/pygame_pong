@@ -1,3 +1,14 @@
 # Ignorar todos os arquivos dentro das pastas:
 .venv/
 __pycache__/
+build/
+dist/
+release/
+*.spec
+*.exe
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.msi

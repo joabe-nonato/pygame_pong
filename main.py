@@ -5,7 +5,7 @@ from entities.base_ball import Ball
 from entities.base_CPU import CPU
 from entities.base_player import Player
 from entities.base_score import Pontuacao
-from system.helpers import escrever, musica_tema
+from system.helpers import escrever
 from audio.efeitos import Efeito
 from audio.musicas import Musica
 
@@ -14,7 +14,7 @@ pg.init()
 pg.mixer.init(
     frequency=44100,
     size=-16,
-    channels=1
+    channels=2
 )
 pg.display.set_caption('PONG')
 

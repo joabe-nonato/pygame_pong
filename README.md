@@ -26,6 +26,7 @@
 - [Como jogar](#como-jogar)
 - [Requisitos](#requisitos)
 - [Como executar](#como-executar)
+- [Gerar executável](#gerar-executável)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Arquitetura](#arquitetura)
 - [Sistema de áudio](#sistema-de-áudio)
@@ -47,11 +48,13 @@ A proposta é mostrar, de forma pequena e organizada, como um jogo funciona por 
 
 ## Demonstração
 
-A imagem abaixo funciona como capa do projeto no GitHub e pode ser substituída no futuro por gifs curtos do jogo em ação.
+O GIF abaixo mostra o jogo em movimento e deixa o repositório mais vivo quando ele for aberto no GitHub.
 
 <p align="center">
-  <img src="assets/image/game_pong.png" alt="Screenshot do Pygame Pong" width="720">
+  <img src="assets/video/pong.gif" alt="Demonstração do Pygame Pong" width="720">
 </p>
+
+A imagem de capa continua disponível no topo do README como destaque visual do projeto.
 
 ## Como jogar
 
@@ -85,6 +88,30 @@ Na raiz do projeto, rode:
 python main.py
 ```
 
+## Gerar executável
+
+Se você quiser criar uma versão para download no Windows, use `PyInstaller`.
+
+Instalação da ferramenta:
+
+```bash
+pip install pyinstaller
+```
+
+Build do executável:
+
+```powershell
+.\build_release.ps1
+```
+
+Ou, se preferir rodar o comando diretamente:
+
+```bash
+python -m PyInstaller --noconfirm --clean --onefile --windowed --name pygame_pong --distpath release --workpath build --specpath build main.py
+```
+
+O arquivo final ficará em `release/`.
+
 ## Estrutura do projeto
 
 ```text
@@ -94,6 +121,8 @@ pygame_pong/
 ├── assets/
 │   └── image/
 │       └── game_pong.png
+│   └── video/
+│       └── pong.gif
 ├── audio/
 │   ├── efeitos.py
 │   ├── gerar_audio.py
