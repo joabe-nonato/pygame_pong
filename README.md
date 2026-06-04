@@ -48,13 +48,10 @@ A proposta é mostrar, de forma pequena e organizada, como um jogo funciona por 
 
 ## Demonstração
 
-O GIF abaixo mostra o jogo em movimento e deixa o repositório mais vivo quando ele for aberto no GitHub.
-
 <p align="center">
   <img src="assets/video/pong.gif" alt="Demonstração do Pygame Pong" width="720">
 </p>
 
-A imagem de capa continua disponível no topo do README como destaque visual do projeto.
 
 ## Como jogar
 
